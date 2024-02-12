@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="FontColor">White</SolidColorBrush>
+
+    <SolidColorBrush x:Key="PrimaryColorBrush">#092635</SolidColorBrush>
+    <SolidColorBrush x:Key="SecondaryColorBrush">#1B4242</SolidColorBrush>
+    <SolidColorBrush x:Key="ThirdColorBrush">#5C8374</SolidColorBrush>
+    <SolidColorBrush x:Key="FourthColorBrush">#9EC8B9</SolidColorBrush>
+
+    <Color x:Key="PrimaryColor">#092635</Color>
+    <Color x:Key="SecondaryColor">#1B4242</Color>
+    <Color x:Key="ThirdColor">#5C8374</Color>
+    <Color x:Key="FourthColor">#9EC8B9</Color>
+
+    <SolidColorBrush x:Key="ScrollBarColor">#D4D4D4</SolidColorBrush>
+</ResourceDictionary>

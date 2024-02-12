@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32804.467
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DreamCatcher", "DreamCatcher\DreamCatcher.csproj", "{38E23BE4-9C57-4080-AB2C-0D3C0C5A30D2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFUserControls", "WPFUserControls\WPFUserControls.csproj", "{875FF89A-F855-4A4C-A9BD-9BF7F57545B3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DreamCatcher.Core", "DreamCatcher.Core\DreamCatcher.Core.csproj", "{EA64289D-44E3-411B-A727-5D5F4DDB84F4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DreamCatcher.Infrastructure", "DreamCatcher.Infrastructure\DreamCatcher.Infrastructure.csproj", "{922E25F5-1FF1-4FCC-AAC2-BB6F47623501}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFCustomControls", "WPFCustomControls\WPFCustomControls.csproj", "{5505423F-2508-4D50-B4F6-10601B947D09}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{38E23BE4-9C57-4080-AB2C-0D3C0C5A30D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38E23BE4-9C57-4080-AB2C-0D3C0C5A30D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38E23BE4-9C57-4080-AB2C-0D3C0C5A30D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38E23BE4-9C57-4080-AB2C-0D3C0C5A30D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{875FF89A-F855-4A4C-A9BD-9BF7F57545B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{875FF89A-F855-4A4C-A9BD-9BF7F57545B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{875FF89A-F855-4A4C-A9BD-9BF7F57545B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{875FF89A-F855-4A4C-A9BD-9BF7F57545B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA64289D-44E3-411B-A727-5D5F4DDB84F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA64289D-44E3-411B-A727-5D5F4DDB84F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA64289D-44E3-411B-A727-5D5F4DDB84F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA64289D-44E3-411B-A727-5D5F4DDB84F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{922E25F5-1FF1-4FCC-AAC2-BB6F47623501}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{922E25F5-1FF1-4FCC-AAC2-BB6F47623501}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{922E25F5-1FF1-4FCC-AAC2-BB6F47623501}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{922E25F5-1FF1-4FCC-AAC2-BB6F47623501}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5505423F-2508-4D50-B4F6-10601B947D09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5505423F-2508-4D50-B4F6-10601B947D09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5505423F-2508-4D50-B4F6-10601B947D09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5505423F-2508-4D50-B4F6-10601B947D09}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BA253A24-AEA0-4AFB-8D11-D314A7355ABD}
+	EndGlobalSection
+EndGlobal
