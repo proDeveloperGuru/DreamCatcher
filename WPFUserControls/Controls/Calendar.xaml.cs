@@ -160,7 +160,9 @@ namespace WPFUserControls.Controls
                     CalendarDayForeground = this.CalendarDayForeground,
                     WeekdayForeground = this.WeekdayForeground,
                     WeekdayLabelBackground = this.WeekdayBackground,
-                    PrevNextMonthDayForeground = this.PrevNextMonthDayForeground
+                    PrevNextMonthDayForeground = this.PrevNextMonthDayForeground,
+                    ActiveGlow = this.ActiveGlow,
+                    HoverGlow = this.HoverGlow,
                 };
             }
         }

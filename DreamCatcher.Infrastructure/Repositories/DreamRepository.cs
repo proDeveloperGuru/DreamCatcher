@@ -61,6 +61,7 @@ namespace DreamCatcher.Infrastructure.Repositories
                 dream.DateTime = newValues.DateTime;
                 dream.Intensity = newValues.Intensity;
                 dream.Type = newValues.Type;
+                dream.Picture = newValues.Picture;
             }
 
             DreamDiaryContext.SaveChanges();

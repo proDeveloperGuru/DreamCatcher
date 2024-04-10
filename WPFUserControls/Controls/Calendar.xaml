@@ -16,7 +16,7 @@
                     <Setter Property="Panel.ZIndex" Value="2"/>
                     <Setter Property="Effect">
                         <Setter.Value>
-                            <DropShadowEffect ShadowDepth="0" Color="{Binding HoverGlow}" Opacity="1" BlurRadius="50"/>
+                            <DropShadowEffect ShadowDepth="0" Color="{Binding Path=HoverGlow, RelativeSource={RelativeSource AncestorType=c:CalendarButton}}" Opacity="1" BlurRadius="50"/>
                         </Setter.Value>
                     </Setter>
                 </Trigger>
@@ -26,14 +26,14 @@
                             <MultiBinding.Converter>
                                 <con:EqualityConverter />
                             </MultiBinding.Converter>
-                            <Binding Path="CalendarDate" RelativeSource="{RelativeSource Self}"/>
+                            <Binding Path="CalendarDate" RelativeSource="{RelativeSource TemplatedParent}"/>
                             <Binding Path="ActiveDate" />
                         </MultiBinding>
                     </DataTrigger.Binding>
                     <Setter Property="Panel.ZIndex" Value="2"/>
                     <Setter Property="Effect">
                         <Setter.Value>
-                            <DropShadowEffect ShadowDepth="0" Color="{Binding ActiveGlow}" Opacity="1" BlurRadius="50"/>
+                            <DropShadowEffect ShadowDepth="0" Color="{Binding Path=ActiveGlow, RelativeSource={RelativeSource AncestorType=c:CalendarButton}}" Opacity="1" BlurRadius="50"/>
                         </Setter.Value>
                     </Setter>
                 </DataTrigger>

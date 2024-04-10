@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:DreamCatcher.Pages"
       xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:prop ="clr-namespace:DreamCatcher.Properties"
+      xmlns:dialogs ="clr-namespace:DreamCatcher.Dialogs"
       mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="200">
     <Grid>
         <Grid.RowDefinitions>
@@ -46,7 +47,7 @@
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
                                     <Image Stretch="Fill" Source="/DreamCatcher;component/Images/moonlight.ico" Style="{StaticResource ImageIfHasPictureNot}"/>
-                                    <Image Stretch="Fill" Source="{Binding Dream.Picture}" Style="{StaticResource ImageIfHasPicture}"/>
+                                    <Image Stretch="Fill" Source="{Binding Dream.Picture, TargetNullValue={x:Null}}" Style="{StaticResource ImageIfHasPicture}"/>
                                 </Grid>
 
                                 <Button Grid.Column="0" Grid.Row="1" Margin="0 0 5 20" HorizontalAlignment="Right" Command="{Binding EditCommand}" CommandParameter="{Binding Dream.Id}"
@@ -57,18 +58,14 @@
 
                                 <TextBlock Grid.Column="1" Grid.Row="0" Margin="0 8 0 0" FontWeight="Bold" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="{Binding Dream.Title}" Foreground="{DynamicResource FontColor}"/>
                                 <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="0 0 10 0" TextWrapping="Wrap" Text="{Binding Dream.ShortDescription}" Foreground="{DynamicResource FontColor}"/>
-
+                            
 
                                 <Button Grid.Column="2" Grid.Row="0" md:RippleAssist.IsDisabled="true" Height="30" Width="30" Command="{Binding DeleteCommand}"  CommandParameter="{Binding Dream.Id}"
                                         Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="{DynamicResource FontColor}">
                                     <md:PackIcon Kind="Close"/>
                                 </Button>
-                                <!--<md:PopupBox Grid.Column="2" Grid.Row="0" Margin="8" Padding="2,0,2,0" Foreground="{DynamicResource FontColor}">
-                                    <StackPanel>
-                                        <Button Content="More" />
-                                        <Button Content="Options" />
-                                    </StackPanel>
-                                </md:PopupBox>-->
+                                <!--<dialogs:CreateEditDreamDialog x:Name="{Binding Path=(ItemsControl.AlternationIndex), 
+                                    RelativeSource={RelativeSource TemplatedParent}}"/>-->
                             </Grid>
                         </md:Card>
 

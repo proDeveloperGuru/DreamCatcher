@@ -14,9 +14,6 @@
              mc:Ignorable="d" d:DesignHeight="700" d:DesignWidth="800" Height="700" Width="800" Foreground="{StaticResource FontColor}">
     <UserControl.Resources>
         <convert:EnumToStringConverter x:Key="EnumToStringConverter"/>
-        <Style x:Key="test" TargetType="RichTextBox">
-            
-        </Style>
     </UserControl.Resources>
     <md:DialogHost Placement="RelativePoint"  CloseOnClickAway="True">
         <Grid Margin="10">
@@ -38,7 +35,7 @@
                 <Button x:Name="ImageSelector" Grid.Row="0" BorderBrush="Transparent" Grid.Column="0" Height="200" Grid.RowSpan="3" Background="Transparent" Padding="0" Click="ImageSelector_Click">
                     <Grid >
                         <Image Stretch="Fill" Source="/DreamCatcher;component/Images/moonlight.ico" Style="{StaticResource ImageIfHasPictureNot}"/>
-                        <Image Stretch="Fill" Source="{Binding Picture}" Style="{StaticResource ImageIfHasPicture}"/>
+                        <Image Stretch="Fill" Source="{Binding Picture, TargetNullValue={x:Null}}" Style="{StaticResource ImageIfHasPicture}"/>
                     </Grid>
                 </Button>
                 <TextBox Grid.Row="0" Grid.Column="1" Margin="5 0 5 0" FontSize="25" Text="{Binding Title}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" HorizontalAlignment="Stretch">

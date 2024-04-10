@@ -17,16 +17,19 @@ namespace DreamCatcher.Dialogs
     {
         public byte[]? Image;
 
-        public CreateEditDreamDialog(Dream dream)
+        public CreateEditDreamDialog()
         {
             InitializeComponent();
+        }
+
+        public CreateEditDreamDialog(Dream dream) : this()
+        {
             this.Image = dream.Picture;
             DataContext = DreamSummaryViewModel.ToViewModel(dream);
         }
 
-        public CreateEditDreamDialog(DateTime dateTime)
+        public CreateEditDreamDialog(DateTime dateTime) : this()
         {
-            InitializeComponent();
             DataContext = new DreamSummaryViewModel(dateTime);
         }
 
@@ -38,15 +41,15 @@ namespace DreamCatcher.Dialogs
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             if (openFileDialog.ShowDialog() == true)
             {
-                var img = File.ReadAllBytes(openFileDialog.FileName);
+                Image = File.ReadAllBytes(openFileDialog.FileName);
 
-                using (var mgk = new MagickImage(img))
-                {
-                    mgk.Strip();
-                    mgk.ColorSpace = ColorSpace.RGB;
+                //using (var mgk = new MagickImage(img))
+                //{
+                //    mgk.Strip();
+                //    mgk.ColorSpace = ColorSpace.RGB;
 
-                    mgk.WriteAsync(openFileDialog.FileName);
-                }
+                //    Image = mgk.ToByteArray();
+                //}
 
 
                 var image = new Image();

@@ -38,6 +38,10 @@ namespace WPFUserControls.Helpers
             public SolidColorBrush WeekendBackground { get; set; } = Brushes.Blue;
 
             public SolidColorBrush WeekendForeground { get; set; } = Brushes.Red;
+
+            public Color HoverGlow { get; set; }
+
+            public Color ActiveGlow { get; set; }
         }
 
         public class CalendarActions
@@ -204,6 +208,8 @@ namespace WPFUserControls.Helpers
                     var button = new CalendarButton()
                     {
                         Style = btnStyle,
+                        HoverGlow = style != null ? style.HoverGlow : Colors.Transparent,
+                        ActiveGlow = style != null ? style.ActiveGlow : Colors.Transparent,
                         CalendarDate = new DateTime(prevYear, prevMonth, i),
                         Background = style != null ?
                             style.WeekendBackground != null ?
@@ -242,6 +248,8 @@ namespace WPFUserControls.Helpers
                     var date = new DateTime(year, month, i);
                     var button = new CalendarButton() {
                         Style = btnStyle,
+                        HoverGlow = style != null ? style.HoverGlow : Colors.Transparent,
+                        ActiveGlow = style != null ? style.ActiveGlow : Colors.Transparent,
                         CalendarDate = date,
                         CalendarLabels = _labels != null ? 
                             _labels.Where(x => x.Date.Year == year && x.Date.Month == month && x.Date.Day == i).ToList() : new List<CalendarButtonLabel>()
@@ -312,6 +320,8 @@ namespace WPFUserControls.Helpers
                     var button = new CalendarButton()
                     {
                         Style = btnStyle,
+                        HoverGlow = style != null ? style.HoverGlow : Colors.Transparent,
+                        ActiveGlow = style != null ? style.ActiveGlow : Colors.Transparent,
                         CalendarDate = new DateTime(nxtY, nxtM, dayNum),
                         Background = style != null ?
                             style.WeekendBackground != null ?

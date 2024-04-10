@@ -8,12 +8,13 @@ namespace DreamCatcher.ViewModel
     {
         #region View model map
         private static AutoMapper.MapperConfiguration config = new AutoMapper.MapperConfiguration(cfg => {
-            cfg.CreateMap<Dream, DreamSummaryViewModel>();
+            cfg.CreateMap<Dream, DreamSummaryViewModel>()
+               .AfterMap((src, dest) => { if (src.Picture == null) dest.Picture = null; }); 
 
             cfg.CreateMap<DreamSummaryViewModel, Dream>()
                 .ForMember(x => x.Title, y => y.MapFrom(z => z.Title.Trim()))
-                .ForMember(x => x.Description, y => y.MapFrom(z => !string.IsNullOrEmpty(z.Description) ? z.Description.Trim() : ""))
-                ;
+                .ForMember(x => x.ShortDescription, y => y.MapFrom(z => !string.IsNullOrEmpty(z.ShortDescription) ? z.ShortDescription.Trim() : ""))
+                .ForMember(x => x.Description, y => y.MapFrom(z => !string.IsNullOrEmpty(z.Description) ? z.Description.Trim() : ""));
         });
         #endregion
 
