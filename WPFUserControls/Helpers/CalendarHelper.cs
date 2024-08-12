@@ -4,9 +4,9 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using WPFCustomControls;
 using WPFUserControls.Comands;
-using static WPFCustomControls.CalendarButton;
+using WPFUserControls.Controls;
+using static WPFUserControls.Controls.CalendarButton;
 using Color = System.Windows.Media.Color;
 
 namespace WPFUserControls.Helpers
@@ -208,8 +208,8 @@ namespace WPFUserControls.Helpers
                     var button = new CalendarButton()
                     {
                         Style = btnStyle,
-                        HoverGlow = style != null ? style.HoverGlow : Colors.Transparent,
-                        ActiveGlow = style != null ? style.ActiveGlow : Colors.Transparent,
+                        //HoverGlow = style != null ? style.HoverGlow : Colors.Transparent,
+                        //ActiveGlow = style != null ? style.ActiveGlow : Colors.Transparent,
                         CalendarDate = new DateTime(prevYear, prevMonth, i),
                         Background = style != null ?
                             style.WeekendBackground != null ?
@@ -248,8 +248,8 @@ namespace WPFUserControls.Helpers
                     var date = new DateTime(year, month, i);
                     var button = new CalendarButton() {
                         Style = btnStyle,
-                        HoverGlow = style != null ? style.HoverGlow : Colors.Transparent,
-                        ActiveGlow = style != null ? style.ActiveGlow : Colors.Transparent,
+                        //HoverGlow = style != null ? style.HoverGlow : Colors.Transparent,
+                        //ActiveGlow = style != null ? style.ActiveGlow : Colors.Transparent,
                         CalendarDate = date,
                         CalendarLabels = _labels != null ? 
                             _labels.Where(x => x.Date.Year == year && x.Date.Month == month && x.Date.Day == i).ToList() : new List<CalendarButtonLabel>()
@@ -320,8 +320,8 @@ namespace WPFUserControls.Helpers
                     var button = new CalendarButton()
                     {
                         Style = btnStyle,
-                        HoverGlow = style != null ? style.HoverGlow : Colors.Transparent,
-                        ActiveGlow = style != null ? style.ActiveGlow : Colors.Transparent,
+                        //HoverGlow = style != null ? style.HoverGlow : Colors.Transparent,
+                        //ActiveGlow = style != null ? style.ActiveGlow : Colors.Transparent,
                         CalendarDate = new DateTime(nxtY, nxtM, dayNum),
                         Background = style != null ?
                             style.WeekendBackground != null ?

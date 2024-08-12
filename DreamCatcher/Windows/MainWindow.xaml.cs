@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using static WPFCustomControls.CalendarButton;
+using static WPFUserControls.Controls.CalendarButton;
 
 namespace DreamCatcher
 {

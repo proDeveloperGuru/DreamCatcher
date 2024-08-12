@@ -10,8 +10,4 @@
     <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\WPFCustomControls\WPFCustomControls.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using WPFUserControls.Helpers;
-using static WPFCustomControls.CalendarButton;
+using static WPFUserControls.Controls.CalendarButton;
 
 namespace WPFUserControls.Controls
 {
@@ -35,8 +35,6 @@ namespace WPFUserControls.Controls
             get { return (Color)GetValue(ActiveGlowProperty); }
             set { SetValue(ActiveGlowProperty, value); }
         }
-
-
 
         private static DependencyProperty SelectedYearProperty = DependencyProperty.Register("SelectedYear",
             typeof(int), typeof(Calendar), new PropertyMetadata(DateTime.Now.Year));
