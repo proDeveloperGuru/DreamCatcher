@@ -56,7 +56,6 @@ namespace DreamCatcher.Infrastructure.Repositories
             if (dream != null)
             {
                 dream.Description = newValues.Description;
-                dream.ShortDescription = newValues.ShortDescription;
                 dream.Title = newValues.Title;
                 dream.DateTime = newValues.DateTime;
                 dream.Intensity = newValues.Intensity;

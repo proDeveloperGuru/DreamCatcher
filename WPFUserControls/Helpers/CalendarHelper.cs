@@ -7,6 +7,7 @@ using System.Windows.Media;
 using WPFUserControls.Comands;
 using WPFUserControls.Controls;
 using static WPFUserControls.Controls.CalendarButton;
+using Calendar = WPFUserControls.Controls.Calendar;
 using Color = System.Windows.Media.Color;
 
 namespace WPFUserControls.Helpers
@@ -72,8 +73,9 @@ namespace WPFUserControls.Helpers
             return months;
         }
 
-        public void LoadCalendar(Grid grid, int year, int month, Style btnStyle, CalendarActions? actions = null, CalendarStyle? style = null)
+        public void LoadCalendar(Calendar cal, int year, int month, Style btnStyle, CalendarActions? actions = null, CalendarStyle? style = null)
         {
+            var grid = cal.CalendarGrid;
             if (actions != null) {
                 if(actions.YearMonthChangeCallbak != null)
                 {
@@ -245,14 +247,18 @@ namespace WPFUserControls.Helpers
             {
                 for (int i = 1; i <= days; i++)
                 {
+                    var daylabels = _labels != null ?
+                            _labels.Where(x => x.Date.Year == year && x.Date.Month == month && x.Date.Day == i).ToList() : new List<CalendarButtonLabel>();
+                    var top3 = daylabels.Take(3).ToList();
+                    
                     var date = new DateTime(year, month, i);
                     var button = new CalendarButton() {
                         Style = btnStyle,
                         //HoverGlow = style != null ? style.HoverGlow : Colors.Transparent,
                         //ActiveGlow = style != null ? style.ActiveGlow : Colors.Transparent,
                         CalendarDate = date,
-                        CalendarLabels = _labels != null ? 
-                            _labels.Where(x => x.Date.Year == year && x.Date.Month == month && x.Date.Day == i).ToList() : new List<CalendarButtonLabel>()
+                        CalendarLabels = top3,
+                        AdditionalItemCount = daylabels.Count - top3.Count
                     };
 
                     var isWeekend = CheckIfIsWeekend(year, month, i);

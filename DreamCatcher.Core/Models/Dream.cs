@@ -23,8 +23,6 @@
 
         public string Title { get; set; } = null!;
 
-        public string? ShortDescription { get; set; }
-
         public string? Description { get; set; }
 
         public DreamIntensity Intensity { get; set; } = DreamIntensity.Normal;

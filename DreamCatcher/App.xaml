@@ -10,7 +10,7 @@
                 <ResourceDictionary Source="Themas/DarkThema.xaml" />
 
                 <md:CustomColorTheme BaseTheme="Dark" PrimaryColor="{StaticResource ThirdColor}"  SecondaryColor="{StaticResource SecondaryColor}"/>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
 
                 <ResourceDictionary Source="Styles/BaseStyle.xaml"/>
                 <ResourceDictionary Source="Styles/Pickers.xaml"/>

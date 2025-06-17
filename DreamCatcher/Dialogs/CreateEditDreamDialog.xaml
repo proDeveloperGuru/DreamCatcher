@@ -61,15 +61,8 @@
                 </StackPanel>
             </Grid>
             <StackPanel Grid.Row="1">
-                <TextBox Text="{Binding ShortDescription}"
-                    TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" 
-                         md:HintAssist.Hint="Short description" md:HintAssist.IsFloating="True" 
-                         FontSize="20" Margin="5" MinHeight="140" MaxHeight="140" />
-                <RichTextBox h:RichTextBoxHelper.DocumentXaml="{Binding Description}"  
-                             Margin="5" FontSize="20" md:HintAssist.Hint="Full description" md:HintAssist.IsFloating="True" Style="{StaticResource MaterialDesignRichTextBox}" >
-                    <md:TextFieldAssist.CharacterCounterStyle>
-                        <Style TargetType="TextBlock" />
-                    </md:TextFieldAssist.CharacterCounterStyle>
+                <RichTextBox Block.LineHeight="2" h:RichTextBoxHelper.DocumentXaml="{Binding Description}"  Style="{StaticResource MaterialDesignOutlinedRichTextBox}"
+                             Margin="5" FontSize="20" md:HintAssist.Hint="Full description" md:HintAssist.IsFloating="True" >
                     <RichTextBox.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="Cut" Command="ApplicationCommands.Cut"/>

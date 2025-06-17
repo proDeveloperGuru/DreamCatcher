@@ -1,21 +1,35 @@
-﻿using DreamCatcher.Core.Models;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
+using DreamCatcher.Core.Models;
 
 namespace DreamCatcher.ViewModel
 {
     public class DreamSummaryViewModel : RequiredViewModel
     {
         #region View model map
-        private static AutoMapper.MapperConfiguration config = new AutoMapper.MapperConfiguration(cfg => {
-            cfg.CreateMap<Dream, DreamSummaryViewModel>()
-               .AfterMap((src, dest) => { if (src.Picture == null) dest.Picture = null; }); 
+        private static AutoMapper.MapperConfiguration config = new AutoMapper.MapperConfiguration(
+            cfg =>
+            {
+                cfg.CreateMap<Dream, DreamSummaryViewModel>()
+                    .AfterMap(
+                        (src, dest) =>
+                        {
+                            if (src.Picture == null)
+                                dest.Picture = null;
+                        }
+                    );
 
-            cfg.CreateMap<DreamSummaryViewModel, Dream>()
-                .ForMember(x => x.Title, y => y.MapFrom(z => z.Title.Trim()))
-                .ForMember(x => x.ShortDescription, y => y.MapFrom(z => !string.IsNullOrEmpty(z.ShortDescription) ? z.ShortDescription.Trim() : ""))
-                .ForMember(x => x.Description, y => y.MapFrom(z => !string.IsNullOrEmpty(z.Description) ? z.Description.Trim() : ""));
-        });
+                cfg.CreateMap<DreamSummaryViewModel, Dream>()
+                    .ForMember(x => x.Title, y => y.MapFrom(z => z.Title.Trim()))
+                    .ForMember(
+                        x => x.Description,
+                        y =>
+                            y.MapFrom(z =>
+                                !string.IsNullOrEmpty(z.Description) ? z.Description.Trim() : ""
+                            )
+                    );
+            }
+        );
         #endregion
 
         #region Properties
@@ -32,7 +46,7 @@ namespace DreamCatcher.ViewModel
             get => _dateTime;
             set
             {
-                if(_dateTime != value)
+                if (_dateTime != value)
                 {
                     _dateTime = value;
                     OnPropertyChanged();
@@ -52,9 +66,12 @@ namespace DreamCatcher.ViewModel
         public DreamType Type { get; set; } = DreamType.Normal;
         #endregion
 
-        public DreamSummaryViewModel(DateTime dateTime) { 
+        #region Constructors
+        public DreamSummaryViewModel(DateTime dateTime)
+        {
             DateTime = dateTime;
         }
+        #endregion
 
         #region Methods
         /// <summary>
@@ -77,11 +94,10 @@ namespace DreamCatcher.ViewModel
         public static DreamSummaryViewModel ToViewModel(Dream item)
         {
             AutoMapper.IMapper mapper = config.CreateMapper();
-            var viewModel= mapper.Map<Dream, DreamSummaryViewModel>(item);
+            var viewModel = mapper.Map<Dream, DreamSummaryViewModel>(item);
 
             return viewModel;
         }
         #endregion
-
     }
 }

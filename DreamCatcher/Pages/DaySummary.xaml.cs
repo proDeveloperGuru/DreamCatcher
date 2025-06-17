@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using DreamCatcher.Windows;
 
 namespace DreamCatcher.Pages
 {
@@ -41,6 +42,9 @@ namespace DreamCatcher.Pages
 
         private async void AddDream_Click(object sender, RoutedEventArgs e)
         {
+            //var win = new CreateEditWindow();
+            //win.ShowDialog();
+
             var model = (DaySymmaryViewModel)DataContext;
             var wnd = (MainWindow)Window.GetWindow(this);
             var editDialog = new CreateEditDreamDialog(model.Date);
@@ -57,7 +61,7 @@ namespace DreamCatcher.Pages
                             dream.Picture = editDialog.Image;
 
                             _serviss.WriteDownDream(dream);
-                            if(model.Dreams != null)
+                            if (model.Dreams != null)
                             {
                                 model.Dreams.Add(new DreamViewModel()
                                 {

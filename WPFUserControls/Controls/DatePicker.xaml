@@ -47,10 +47,10 @@
                         <Setter Property="Foreground"  Value="{Binding Foreground}" />
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding ElementName=DateTextBox, Path=IsFocused}" Value="True">
-                                <Setter Property="Foreground"  Value="{StaticResource PrimaryHueMidBrush}"/>
+                                <Setter Property="Foreground"  Value="{StaticResource PrimaryColorBrush}"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding ElementName=DateTextBox, Path=IsMouseOver}" Value="True">
-                                <Setter Property="Foreground"  Value="{StaticResource PrimaryHueMidBrush}"/>
+                                <Setter Property="Foreground"  Value="{StaticResource PrimaryColorBrush}"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>

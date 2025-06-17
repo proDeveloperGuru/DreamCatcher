@@ -7,6 +7,7 @@
       xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:prop ="clr-namespace:DreamCatcher.Properties"
       xmlns:dialogs ="clr-namespace:DreamCatcher.Dialogs"
+      xmlns:h="clr-namespace:DreamCatcher.Helpers"
       mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="200">
     <Grid>
         <Grid.RowDefinitions>
@@ -42,32 +43,29 @@
                                     <ColumnDefinition Width="50"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="45" />
-                                    <RowDefinition Height="170" />
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="150" />
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
                                     <Image Stretch="Fill" Source="/DreamCatcher;component/Images/moonlight.ico" Style="{StaticResource ImageIfHasPictureNot}"/>
                                     <Image Stretch="Fill" Source="{Binding Dream.Picture, TargetNullValue={x:Null}}" Style="{StaticResource ImageIfHasPicture}"/>
                                 </Grid>
 
-                                <Button Grid.Column="0" Grid.Row="1" Margin="0 0 5 20" HorizontalAlignment="Right" Command="{Binding EditCommand}" CommandParameter="{Binding Dream.Id}"
-                                        VerticalAlignment="Bottom" Background="{StaticResource PrimaryColorBrush}"
-                                    Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}">
+                                <Button Grid.Column="0" Grid.Row="1" Margin="0 0 5 10" VerticalAlignment="Bottom"  HorizontalAlignment="Right" Command="{Binding EditCommand}" CommandParameter="{Binding Dream.Id}"
+                                        Background="{StaticResource PrimaryColorBrush}" Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}">
                                     <md:PackIcon Kind="Edit" />
                                 </Button>
 
-                                <TextBlock Grid.Column="1" Grid.Row="0" Margin="0 8 0 0" FontWeight="Bold" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="{Binding Dream.Title}" Foreground="{DynamicResource FontColor}"/>
-                                <ScrollViewer VerticalScrollBarVisibility="Auto"  Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="10">
-                                    <TextBlock TextWrapping="Wrap" Text="{Binding Dream.ShortDescription}" Foreground="{DynamicResource FontColor}"/>
-                                </ScrollViewer>
-                            
+                                <TextBlock Grid.Column="1" Grid.Row="0" Margin="0 5 0 0" FontWeight="Bold" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="{Binding Dream.Title}" Foreground="{DynamicResource FontColor}"/>
+                                <RichTextBox Grid.Column="1" Grid.Row="1" Margin="5" Block.LineHeight="2" IsReadOnly="true" VerticalAlignment="Top"
+                                             h:RichTextBoxHelper.DocumentXaml="{Binding Dream.Description}" md:TextFieldAssist.TextBoxViewVerticalAlignment="Stretch" 
+                                             Style="{StaticResource MaterialDesignRichTextBox}" md:TextFieldAssist.DecorationVisibility="Hidden" BorderThickness="0">
+                                </RichTextBox>
 
                                 <Button Grid.Column="2" Grid.Row="0" md:RippleAssist.IsDisabled="true" Height="30" Width="30" Command="{Binding DeleteCommand}"  CommandParameter="{Binding Dream.Id}"
                                         Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="{DynamicResource FontColor}">
                                     <md:PackIcon Kind="Close"/>
                                 </Button>
-                                <!--<dialogs:CreateEditDreamDialog x:Name="{Binding Path=(ItemsControl.AlternationIndex), 
-                                    RelativeSource={RelativeSource TemplatedParent}}"/>-->
                             </Grid>
                         </md:Card>
 

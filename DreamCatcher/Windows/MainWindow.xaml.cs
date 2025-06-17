@@ -19,6 +19,7 @@ namespace DreamCatcher
             _dreamServiss = dreamServiss;
             InitializeComponent();
 
+            DataContext = this;
             var now = DateTime.Now;
             var datetime = new DateTime(now.Year,now.Month,now.Day);
 

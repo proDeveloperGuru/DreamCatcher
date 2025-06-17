@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
+using WPFUserControls.Converters;
 using WPFUserControls.Helpers;
 using static WPFUserControls.Controls.CalendarButton;
 
@@ -17,6 +20,7 @@ namespace WPFUserControls.Controls
         CalendarHelper _helper;
         Dictionary<string, int> _months;
         Style _btnStyle;
+        EqualityConverter _equalityConverter = new EqualityConverter();
 
         private static DependencyProperty HoverGlowProperty = DependencyProperty.Register("HoverGlow",
             typeof(Color), typeof(Calendar), new PropertyMetadata(Colors.White));
@@ -28,7 +32,7 @@ namespace WPFUserControls.Controls
         }
 
         private static DependencyProperty ActiveGlowProperty = DependencyProperty.Register("ActiveGlow",
-            typeof(Color), typeof(Calendar), new PropertyMetadata(Colors.Transparent));
+            typeof(Color), typeof(Calendar), new PropertyMetadata(Colors.Red));
 
         public Color ActiveGlow
         {
@@ -196,12 +200,80 @@ namespace WPFUserControls.Controls
             }
         }
 
+
+        private Style SetTriggers(Style? style)
+        {
+            if (style == null)
+                style = new Style();
+
+            var mouseOverTrigger = new Trigger()
+            {
+                Property = CalendarButton.IsMouseOverProperty,
+                Value = true
+            };
+
+            Binding hoverGlowBinding = new Binding("HoverGlow") {
+                Source = this
+            };
+            Binding activeGlowBinding = new Binding("ActiveGlow") {
+                Source =this
+            };
+            var mouseOvereffect =  new DropShadowEffect()
+            {
+                ShadowDepth = 0,
+                Opacity = 1,
+                BlurRadius = 50,
+            };
+
+            BindingOperations.SetBinding(mouseOvereffect,DropShadowEffect.ColorProperty, hoverGlowBinding);
+
+            var activeDateEffect = new DropShadowEffect()
+            {
+                ShadowDepth = 0,
+                Opacity = 1,
+                BlurRadius = 50,
+            };
+
+            BindingOperations.SetBinding(activeDateEffect, DropShadowEffect.ColorProperty, activeGlowBinding);
+
+            mouseOverTrigger.Setters.Add(new Setter(Panel.ZIndexProperty, 2));
+            mouseOverTrigger.Setters.Add(new Setter(CalendarButton.EffectProperty, mouseOvereffect));
+
+            var dataTrigger = new DataTrigger() {
+                Value = true
+            };
+
+            MultiBinding multiBinding = new MultiBinding();
+            multiBinding.Converter = _equalityConverter;
+
+            multiBinding.Bindings.Add(new Binding("ActiveDate"));
+            multiBinding.Bindings.Add(new Binding("CalendarDate") { RelativeSource = new RelativeSource(RelativeSourceMode.Self) });
+
+            dataTrigger.Binding = multiBinding;
+            dataTrigger.Setters.Add(new Setter(Panel.ZIndexProperty, 2));
+            dataTrigger.Setters.Add(new Setter(CalendarButton.EffectProperty, activeDateEffect));
+
+            style.Triggers.Add(mouseOverTrigger);
+            style.Triggers.Add(dataTrigger);
+
+            return style;
+        }
+
         public Calendar()
         {
             InitializeComponent();
             _helper = new CalendarHelper();
             _months = _helper.GetMonths();
-            _btnStyle = FindResource("cbtn") as Style;
+
+            object? cbtn = null;
+            try {
+                cbtn = FindResource("cbtn");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+            }
+            _btnStyle = SetTriggers(cbtn as Style);
 
             for (int i = -50; i < 50; i++)
                 YearCombobox.Items.Add(DateTime.Today.AddYears(i).Year);
@@ -230,7 +302,7 @@ namespace WPFUserControls.Controls
 
             MonthCombobox.SelectedIndex = _months.FirstOrDefault(x => x.Value == SelectedMonth).Value - 1;
 
-            _helper.LoadCalendar(this.CalendarGrid, SelectedYear, SelectedMonth, _btnStyle, _calendarActions, _calendarStyle);
+            _helper.LoadCalendar(this, SelectedYear, SelectedMonth, _btnStyle, _calendarActions, _calendarStyle);
         }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
@@ -244,7 +316,7 @@ namespace WPFUserControls.Controls
             }
             MonthCombobox.SelectedIndex = _months.FirstOrDefault(x => x.Value == SelectedMonth).Value - 1;
 
-            _helper.LoadCalendar(this.CalendarGrid, SelectedYear, SelectedMonth, _btnStyle, _calendarActions, _calendarStyle);
+            _helper.LoadCalendar(this, SelectedYear, SelectedMonth, _btnStyle, _calendarActions, _calendarStyle);
         }
 
         private void YearCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -262,7 +334,7 @@ namespace WPFUserControls.Controls
             }
 
 
-            _helper.LoadCalendar(this.CalendarGrid, SelectedYear, SelectedMonth, _btnStyle, _calendarActions, _calendarStyle);
+            _helper.LoadCalendar(this, SelectedYear, SelectedMonth, _btnStyle, _calendarActions, _calendarStyle);
         }
 
         private void MonthCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -275,7 +347,7 @@ namespace WPFUserControls.Controls
                 SelectedMonth = month;
             }
 
-            _helper.LoadCalendar(this.CalendarGrid, SelectedYear, SelectedMonth, _btnStyle, _calendarActions, _calendarStyle);
+            _helper.LoadCalendar(this, SelectedYear, SelectedMonth, _btnStyle, _calendarActions, _calendarStyle);
         }
 
         private void ToTodayButton_Click(object sender, RoutedEventArgs e)
@@ -286,17 +358,17 @@ namespace WPFUserControls.Controls
             YearCombobox.SelectedItem = SelectedYear;
             MonthCombobox.SelectedIndex = _months.FirstOrDefault(x => x.Value == SelectedMonth).Value - 1;
 
-            _helper.LoadCalendar(this.CalendarGrid, SelectedYear, SelectedMonth, _btnStyle, _calendarActions, _calendarStyle);
+            _helper.LoadCalendar(this, SelectedYear, SelectedMonth, _btnStyle, _calendarActions, _calendarStyle);
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            _helper.LoadCalendar(this.CalendarGrid, SelectedYear, SelectedMonth, _btnStyle, _calendarActions, _calendarStyle);
+            _helper.LoadCalendar(this, SelectedYear, SelectedMonth, _btnStyle, _calendarActions, _calendarStyle);
         }
 
         public void Reload()
         {
-            _helper.LoadCalendar(this.CalendarGrid, SelectedYear, SelectedMonth, _btnStyle, _calendarActions, _calendarStyle);
+            _helper.LoadCalendar(this, SelectedYear, SelectedMonth, _btnStyle, _calendarActions, _calendarStyle);
         }
     }
 }

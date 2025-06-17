@@ -51,6 +51,15 @@ namespace WPFUserControls.Controls
             set {  SetValue(CalendarDateProperty, value); }
         }
 
+        private static DependencyProperty AdditionalItemCountProperty = DependencyProperty.Register("AdditionalItemCount",
+            typeof(int), typeof(CalendarButton));
+
+        public int AdditionalItemCount
+        {
+            get { return (int)GetValue(AdditionalItemCountProperty); }
+            set { SetValue(AdditionalItemCountProperty, value); }
+        }
+
         public CalendarButton()
         {
         }
